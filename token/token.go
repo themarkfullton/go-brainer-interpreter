@@ -14,6 +14,7 @@ type Token struct {
 }
 
 const (
+	// ILLEGAL means a token that is not recognized
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 
@@ -40,7 +41,6 @@ const (
 	RBRACE = "}"
 
 	// Keywords
-
 	FUNCTION = "FUNCTION"
 
 	LET = "LET"
