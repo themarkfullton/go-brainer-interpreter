@@ -2,7 +2,7 @@ package lexer
 
 import(
 	"testing"
-	"go-brainer-interpreter/token"
+	"github.com/themarkfullton/go-brainer-interpreter/token"
 )
 
 func TestNextToken(t *testing.T) {
@@ -30,9 +30,7 @@ func TestNextToken(t *testing.T) {
 		tok := l.NextToken()
 
 		if tok.Type != tt.expectedType {
-			t.Fatalf("tests[%d] - tokentype wrong.expected=%q,got=%q"),
-
-				i, tt.expectedType, tok.Type)
+			t.Fatalf("tests[%d] - tokentype wrong.expected=%q,got=%q", i, tt.expectedType, tok.Type)
 		}
 
 		if tok.Literal != tt.expectedLiteral {
