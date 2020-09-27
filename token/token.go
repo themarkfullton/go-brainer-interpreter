@@ -27,6 +27,18 @@ const (
 
 	PLUS = "+"
 
+	MINUS = "-"
+
+	NOT = "!"
+
+	ASTERISK = "*"
+
+	SLASH = "/"
+
+	LT = "<"
+
+	GT = ">"
+
 	// Delimiters
 	COMMA = ","
 
