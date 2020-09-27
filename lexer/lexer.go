@@ -36,8 +36,11 @@ func (l *Lexer) readChar() {
 	l.readPosition += 1
 }
 
+// Main function in lexer.go
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
+
+	l.skipWhitespace()
 
 	switch l.ch {
 	case '=':
@@ -64,6 +67,12 @@ func (l *Lexer) NextToken() token.Token {
 			tok.Literal = l.readIdentifier()
 			tok.Type = token.LookupIdent(tok.Literal)
 			return tok
+		} else if isDigit(l.ch) {
+			tok.Type = token.INIT
+
+			tok.Literal = l.readNumber()
+
+			return tok
 		} else {
 			tok = newToken(token.ILLEGAL, l.ch)
 		}
@@ -76,6 +85,14 @@ func (l *Lexer) NextToken() token.Token {
 
 func newToken(tokenType token.TokenType, ch byte) token.Token {
 	return token.Token { Type: tokenType, Literal: string(ch)}
+}
+
+// Sometimes this function is called "eatWhitespace"
+// Also called "consumeWhitespace"
+func (l *Lexer) skipWhitespace() {
+	for l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '\r' {
+		l.readChar()
+	}
 }
 
 // Reads an identifier and advances lexer's position until finds non-letter char
@@ -92,4 +109,18 @@ func (l *Lexer) readIdentifier() string {
 // Allows _ to be used in variable names
 func isLetter(ch byte) bool{
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
+}
+
+func (l *Lexer) readNumber() string{
+	position := l.position
+
+	for isDigit (l.ch){
+		l.readChar()
+	}
+
+	return l.input[position:l.position]
+}
+
+func isDigit(ch byte) bool{
+	return '0' <= ch && ch <= '9'
 }
