@@ -45,3 +45,17 @@ const (
 
 	LET = "LET"
 )
+
+var keywords = map[string]TokenType {
+	"fn": FUNCTION,
+	"let": LET
+}
+
+
+// Checks the keywords map to see if var is keyword
+func LookupIdent(ident string) TokenType{
+	if tok, ok := keywords[ident]; ok{
+		return tok
+	}
+	return IDENT
+}
