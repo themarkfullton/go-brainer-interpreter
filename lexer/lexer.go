@@ -111,6 +111,8 @@ func isLetter(ch byte) bool{
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
 
+// Currently only supports integer values
+// Still need to add hex-decimal-float-etc
 func (l *Lexer) readNumber() string{
 	position := l.position
 
