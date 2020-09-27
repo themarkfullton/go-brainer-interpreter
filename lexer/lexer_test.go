@@ -20,9 +20,9 @@ func TestNextToken(t *testing.T) {
 
 	!-/*5;
 
-	5 < 10 >5;
-
 	`
+
+	//Add to test later 5 < 10 >5;
 
 	tests := []struct {
 		expectedType token.TokenType
@@ -64,6 +64,12 @@ func TestNextToken(t *testing.T) {
 		{token.COMMA, ","},
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
+		{token.SEMICOLON, ";"},
+		{token.NOT, "!"},
+		{token.MINUS, "-"},
+		{token.SLASH, "/"},
+		{token.ASTERISK, "*"},
+		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
