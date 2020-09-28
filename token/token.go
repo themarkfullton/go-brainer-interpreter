@@ -39,6 +39,12 @@ const (
 
 	GT = ">"
 
+	// Equality Operators
+	EQ = "=="
+
+	NOT_EQ = "!="
+
+
 	// Delimiters
 	COMMA = ","
 
