@@ -50,5 +50,5 @@ func (ls *LetStatement) TokenLiteral() string {
 func (i *Identifier) expressionNode() {}
 
 func (i *Identifier) TokenLiteral() string{
-	return i.TokenLiteral
+	return i.Token.Literal
 }
