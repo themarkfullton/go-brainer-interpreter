@@ -32,7 +32,7 @@ func (p *Parser) nextToken() {
 
 func (p *Parser) ParseProgram() *ast.Program {
 
-	program := &ast.Progam{}
+	program := &ast.Program{}
 
 	program.Statements = []ast.Statement{}
 
@@ -71,6 +71,8 @@ func (p *Parser) parseLetStatement() *ast.LetStatement {
 	if !p.expectPeek(token.ASSIGN){
 		return nil
 	}
+
+	//
 
 	for !p.curTokenIs(token.SEMICOLON) {
 		p.nextToken()
