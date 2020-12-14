@@ -7,10 +7,10 @@ import (
 )
 
 func TestLetStatements(t *testing.T){
-	input := `let x  5;
-
-let  = 10;
-let 838383;`
+	input := `return 5;
+return 10;
+return 993322;
+`
 
 	l := lexer.New(input)
 
@@ -28,19 +28,17 @@ let 838383;`
 		t.Fatalf("program.Statements does not contain 3 statements. got =%d", len(program.Statements))
 	}
 
-	tests := []struct {
-		expectedIdentifier string
-	} {
-		{"x"},
-		{"y"},
-		{"foobar"},
-	}
+	for _, stmt := range program.Statements {
+		returnStmt, ok := stmt.(*ast.ReturnStatement)
 
-	for i, tt := range tests {
-		stmt := program.Statements[i]
+		if !ok {
+			t.Errorf("Statement not *ast.ReturnStatement; got =%T", stmt)
 
-		if !testLetStatement(t, stmt, tt.expectedIdentifier) {
-			return
+			continue
+		}
+
+		if returnStmt.TokenLiteral() != "return" {
+			t.Errorf("returnStmt.TokenLiteral not 'return', got %q", returnStmt.TokenLiteral())
 		}
 	}
 }
