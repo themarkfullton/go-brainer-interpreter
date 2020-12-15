@@ -78,6 +78,10 @@ type Identifier struct {
 	Value string
 }
 
+func (i *Identifier) String() string {
+	return i.Value
+}
+
 func (i *Identifier) expressionNode() {}
 
 func (i *Identifier) TokenLiteral() string{
