@@ -7,6 +7,25 @@ import (
 	"fmt"
 	)
 
+const (
+	_ int = iota
+
+	LOWEST
+
+	EQUALS // ==
+
+	LESSERGREATER // > or <
+
+	SUM // +
+
+	PRODUCT // *
+
+	PREFIX // -x or !x
+
+	CALL // function call
+
+)
+
 type (
 	prefixParseFn func() ast.Expression
 	infixParseFn func(ast.Expression) ast.Expression
@@ -156,25 +175,6 @@ func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
 func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
 	p.infixParseFns[tokenType] = fn
 }
-
-const (
-	_ int = iota
-
-	LOWEST
-
-	EQUALS // ==
-
-	LESSERGREATER // > or <
-
-	SUM // +
-
-	PRODUCT // *
-
-	PREFIX // -x or !x
-
-	CALL // function call
-
-)
 
 func (p *Parser) parseExpression(precedence int) ast.Expression {
 	prefix := p.prefixParseFns[p.curToken.Type]
