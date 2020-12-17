@@ -190,7 +190,7 @@ func (p *Parser) parseExpression(precedence int) ast.Expression {
 
 func New(l *lexer.Lexer) *Parser {
 	p.prefixParseFns = make(map[token.TokenType]prefixParseFn)
-	p.registerPrefix(token.IDENT, p.parseIdentifier)0
+	p.registerPrefix(token.IDENT, p.parseIdentifier)
 }
 
 func (p *Parser) parseIdentifier() ast.Expression {
