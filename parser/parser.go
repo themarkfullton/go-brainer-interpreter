@@ -52,6 +52,9 @@ func New(l *lexer.Lexer) *Parser {
 
 	p.nextToken()
 
+	p.prefixParseFns = make(map[token.TokenType]prefixParseFn)
+	p.registerPrefix(token.IDENT, p.parseIdentifier)
+
 	return p
 }
 
@@ -186,11 +189,6 @@ func (p *Parser) parseExpression(precedence int) ast.Expression {
 	leftExp := prefix()
 
 	return leftExp
-}
-
-func New(l *lexer.Lexer) *Parser {
-	p.prefixParseFns = make(map[token.TokenType]prefixParseFn)
-	p.registerPrefix(token.IDENT, p.parseIdentifier)
 }
 
 func (p *Parser) parseIdentifier() ast.Expression {
