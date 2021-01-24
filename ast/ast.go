@@ -1,10 +1,9 @@
 package ast
 
 import (
-	"github.com/themarkfullton/go-brainer-interpreter/parser"
-	"github.com/themarkfullton/go-brainer-interpreter/token"
 	"bytes"
-	)
+	"github.com/themarkfullton/go-brainer-interpreter/token"
+)
 
 type Node interface {
 	TokenLiteral() string
@@ -186,7 +185,7 @@ func (ie *InfixExpression) TokenLiteral() string {
 	return ie.TokenLiteral()
 }
 
-func (ie *InfixExpression) String() string{
+func (ie *InfixExpression) String() string {
 	var out bytes.Buffer
 
 	out.WriteString("(")
@@ -197,4 +196,4 @@ func (ie *InfixExpression) String() string{
 
 	return out.String()
 
-
+}
